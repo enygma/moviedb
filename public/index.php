@@ -45,9 +45,11 @@ require_once '../vendor/autoload.php';
                         <option value="actor">Actor</option>
                     </select>
                     <button class="btn btn-primary" id="search-btn">Search</button>
+                    <img src="/assets/img/loader.gif" style="display:none" id="loader-img"/>
                 </fieldset>
             </form>
             <br/>
+            <div id="msg"></div>
             <h3>Actor Search Results</h3>
             <p>
                 Click on movie title for more information.

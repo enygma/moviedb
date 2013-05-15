@@ -24,13 +24,33 @@ $(document).ready(function(){
      * When "Search" is pressed, run the request
      */
     $('#search-btn').click(function(e) {
+        $('#loader-img').toggle();
         e.preventDefault();
         $.ajax({
             url: '/query.php',
             data: $('#search-form').serialize(),
             dataType: 'json',
             success: function(data) {
+                $('#msg').html('');
                 $('#actor-results tbody').html('');
+
+                if (data.length == 0) {
+                    // No data found - let the user know
+                    var row = '<tr><td colspan="3">No Results Found</td></tr>';
+                    $('#actor-results tbody').append(row);
+                    $('#loader-img').toggle();
+                    return true;
+                }
+
+                // see if the first object is a movie or actor
+                if (typeof data[0].title == 'undefined') {
+                    var errorMsg = '<div class="alert alert-error">Too many results for '
+                        +'that actor name ('+data.length+'). Please refine your search!';
+                    $('#msg').append(errorMsg);
+                    $('#loader-img').toggle();
+                    return true;
+                }
+
                 $.each(data, function(k, v) {
                     var release_date = 
                         (v.release_date.length == 0) ? 'None' : v.release_date;
@@ -49,6 +69,7 @@ $(document).ready(function(){
                     var movieId = $(this).attr('id');
                     getMovieById(movieId);
                 });
+                $('#loader-img').toggle();
             }
         });
     });
