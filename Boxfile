@@ -4,4 +4,4 @@ web1:
   php_extensions:
     - zip
     - curl
-document_root: public
+  document_root: public
