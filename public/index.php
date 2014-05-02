@@ -23,7 +23,7 @@ require_once '../vendor/autoload.php';
             // see if we need the user to authorize the session
             $session = new \MovieDb\Session(
                 new \Guzzle\Http\Client('http://api.themoviedb.org'),
-                array('api_key' => $_SERVER['API_KEY'])
+                array('api_key' => $_ENV['API_KEY'])
             );
 
             if ($session->getToken() === null): ?>
