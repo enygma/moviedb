@@ -14,7 +14,7 @@ require_once '../vendor/autoload.php';
         #actor-results thead td { font-weight: bold; }
         </style>
         <script>
-        
+
         </script>
     </head>
     <body>
@@ -29,13 +29,13 @@ require_once '../vendor/autoload.php';
             if ($session->getToken() === null): ?>
                 <div class="alert alert-error">
                     <b>Oops!</b> You need to say it's okay for us to use your account
-                    for the API - <a href="/authenticate.php" target="_new">click here</a> 
+                    for the API - <a href="/authenticate.php" target="_new">click here</a>
                     to authorize.
                 </div>
             <?php endif; ?>
 
-            <h3>Search</h3>
-            <p>Use the form below to search The Movie Database:</p>
+            <h3>Search to Movie DB</h3>
+            <p>Use the form below to search <a href="http://moviedb.org">The Movie Database:</a></p>
 
             <form class="form-inline" id="search-form">
                 <fieldset>
@@ -45,6 +45,7 @@ require_once '../vendor/autoload.php';
                         <option value="actor">Actor</option>
                     </select>
                     <button class="btn btn-primary" id="search-btn">Search</button>
+                    <button class="btn btn-danger" id="clear-btn">Clear</button>
                     <img src="/assets/img/loader.gif" style="display:none" id="loader-img"/>
                 </fieldset>
             </form>
