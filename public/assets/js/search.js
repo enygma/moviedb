@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
 
     /**
      * Make the call to get the movie data by ID
@@ -52,9 +52,7 @@ $(document).ready(function(){
                 }
 
                 $.each(data, function(k, v) {
-                    var release_date = 
-                        (v.release_date.length == 0) ? 'None' : v.release_date;
-
+                    var release_date = (v.release_date == null) ? 'N/A' : v.release_date;
                     var row = '<tr>';
                     row += '<td><a href="#myModal" id="'+v.id+'" data-toggle="modal"'
                         +' class="movie-title">'+v.title+'</td>';
@@ -72,5 +70,11 @@ $(document).ready(function(){
                 $('#loader-img').toggle();
             }
         });
+    });
+
+    $('#clear-btn').click(function(e) {
+        e.preventDefault();
+        $('#query').val('');
+        $('#actor-results tbody').html('');
     });
 });
